@@ -5,13 +5,14 @@ const WizardForm = lazy(() => import('./pages/WizardForm'))
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Landing />}></Route>
-        <Route path="/create" element={<WizardForm />}></Route>
-      </Routes>
-    </Router>
-
+    <Suspense fallback={<div>...loading</div>}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="/create" element={<WizardForm />}></Route>
+        </Routes>
+      </Router>
+    </Suspense>
   );
 }
 
