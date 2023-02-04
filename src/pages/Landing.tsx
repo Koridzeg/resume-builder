@@ -34,7 +34,7 @@ const Landing: React.FC = () => {
                 <Button variant='outlined' style={{ width: '400px', backgroundColor: 'black', color: 'white', fontSize: '20px', zIndex: '1' }} onClick={() => {
                     navigate('/create')
                 }}> რეზიუმეს დამატება </Button>
-                <img src={backgroundLogo} alt="bgLogo" style={{ position: 'absolute', right: '550px', bottom: '220px' }} />
+                <img src={backgroundLogo} alt="bgLogo" style={{ position: 'absolute', right: '30%', bottom: '20%' }} />
             </Box>
 
         </Box>

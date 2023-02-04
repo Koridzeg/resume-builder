@@ -8,11 +8,11 @@ function App() {
     <Suspense fallback={<div>...loading</div>}>
       <Router>
         <Routes>
-          <Route path="/" element={<Landing />}></Route>
-          <Route path="/create" element={<WizardForm />}></Route>
+          <Route path="/" element={<Landing />} />
+          <Route path="/create" element={<WizardForm />} />
         </Routes>
       </Router>
-    </Suspense>
+    </Suspense >
   );
 }
 
