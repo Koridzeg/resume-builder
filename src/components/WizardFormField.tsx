@@ -34,7 +34,7 @@ const WizardFormField = ({ label, hint, placeholder, validate }: TextFieldProps)
                 type='text'
                 value={value}
                 onChange={handleChange} />
-            <Typography fontSize='12px' fontWeight='100'>{hint}</Typography>
+            <Typography fontSize='14px' color='#2E2E2E' fontWeight='100'>{hint}</Typography>
         </Box>
     )
 }

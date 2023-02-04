@@ -8,7 +8,7 @@ const appTheme = createTheme({
           main: '#151516',
         },
         secondary: {
-          main: '#f50057',
+          main: '#0E80BF',
         },
         error: {
           main: '#EF5050',
