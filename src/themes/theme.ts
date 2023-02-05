@@ -6,6 +6,7 @@ const appTheme = createTheme({
         mode: 'light',
         primary: {
           main: '#151516',
+          light: '#29d824',
         },
         secondary: {
           main: '#0E80BF',
@@ -13,6 +14,9 @@ const appTheme = createTheme({
         error: {
           main: '#EF5050',
         },
+        success: {
+            main: '#98E37E',
+          },
       },
 }) 
 

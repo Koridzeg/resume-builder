@@ -1,13 +1,18 @@
 import { Box, IconButton, TextField, Typography } from '@mui/material'
 import Button from '@mui/material/Button'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import back from "../images/back.png"
 import line from "../images/line.png"
 import WizardFormField from '../components/WizardFormField'
 
 
-export const FirstStep: React.FC = () => {
+export const FirstStep: React.FC<{ handleNextStep: () => void }> = ({ handleNextStep }) => {
+    const [nameError, setNameError] = useState<boolean>(false)
+    const [emailError, setEmailError] = useState<boolean>(false)
+    const [numberError, setNumberError] = useState<boolean>(false)
+    const [surnameError, setSurnameError] = useState<boolean>(false)
+
     const [file, setFile] = useState<File | null>(null);
 
     const navigate = useNavigate();
@@ -38,7 +43,7 @@ export const FirstStep: React.FC = () => {
     }
 
     const handleEmailValidation = (value: string) => {
-        const mailformat = /^\w+([.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const mailformat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         return value.endsWith('@redberry.ge') && new RegExp(mailformat).test(value)
     }
 
@@ -50,6 +55,8 @@ export const FirstStep: React.FC = () => {
 
         return value.startsWith('+995') && String(formatedNumber).length === 12
     }
+
+
 
     return (
         <Box display='flex' height='100vh' width='100%' >
@@ -66,11 +73,11 @@ export const FirstStep: React.FC = () => {
                     </Box>
                 </Box>
                 <Box display='flex' paddingLeft='7.5em' gap="4em">
-                    <Box width="40%">
-                        <WizardFormField placeholder='ანზორ' label="სახელი" hint="მინიმუმ 2 ასო,ქართული ასოები" validate={handleNameValidation} />
+                    <Box width="41%">
+                        <WizardFormField onError={(error) => setNameError(error)} placeholder='ანზორ' label="სახელი" hint="მინიმუმ 2 ასო,ქართული ასოები" validate={handleNameValidation} />
                     </Box>
-                    <Box width="40%">
-                        <WizardFormField placeholder='მუმლაძე' label="გვარი" hint="მინიმუმ 2 ასო,ქართული ასოები" validate={handleNameValidation} />
+                    <Box width="41%">
+                        <WizardFormField onError={(error) => setSurnameError(error)} placeholder='მუმლაძე' label="გვარი" hint="მინიმუმ 2 ასო,ქართული ასოები" validate={handleNameValidation} />
                     </Box>
                 </Box>
                 <Box display='flex' gap="1.5em" paddingTop='1em' paddingLeft='7.5em'>
@@ -83,11 +90,20 @@ export const FirstStep: React.FC = () => {
                         <TextField multiline placeholder="ზოგადი ინფო შენ შესახებ" rows={4} sx={{ bgcolor: 'white', width: "87%" }} />
                     </Box>
                 </Box>
-                <Box display='flex' width='89%' paddingTop='1em' paddingLeft='7.5em'>
-                    <WizardFormField placeholder='anzorr666@redberry.ge' label='ელ.ფოსტა' hint='უნდა მთავრდებოდეს @redberry.ge-ით' validate={handleEmailValidation} />
+                <Box display='flex' width='91%' paddingTop='1em' paddingLeft='7.5em'>
+                    <WizardFormField onError={(error) => setEmailError(error)} placeholder='anzorr666@redberry.ge' label='ელ.ფოსტა' hint='უნდა მთავრდებოდეს @redberry.ge-ით' validate={handleEmailValidation} />
                 </Box>
-                <Box display='flex' width='89%' paddingTop='1em' paddingLeft='7.5em'>
-                    <WizardFormField placeholder='+995 551 12 34 56' label='მობილურის ნომერი' hint='უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს' validate={handlePhoneValidation} />
+                <Box display='flex' width='91%' paddingTop='1em' paddingLeft='7.5em'>
+                    <WizardFormField onError={(error) => setNumberError(error)} placeholder='+995 551 12 34 56' label='მობილურის ნომერი' hint='უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს' validate={handlePhoneValidation} />
+                </Box>
+                <Box display='flex' justifyContent='flex-end' width='89%' paddingTop='4em'>
+                    <Button sx={{ bgcolor: '#6B40E3', width: '151px', height: '48px', borderRadius: '4px', color: 'white',fontSize:'18px' }} onClick={() => {
+                        if (!nameError && !surnameError && !emailError && !numberError) {
+                            handleNextStep()
+                        } else {
+                            return null
+                        }
+                    }} >შემდეგი</Button>
                 </Box>
             </Box>
 
@@ -115,7 +131,7 @@ const WizardForm: React.FC = () => {
     const renderStep = (step: number) => {
         switch (step) {
             case 1:
-                return <FirstStep />
+                return <FirstStep handleNextStep={handleNextStep} />
             case 2:
                 return <SecondStep />
             case 3:
@@ -126,6 +142,7 @@ const WizardForm: React.FC = () => {
     }
 
     const handleNextStep = () => {
+
         if (currentStep === 3) {
             navigate("/")
         } else {
@@ -136,7 +153,6 @@ const WizardForm: React.FC = () => {
     return (
         <div>
             {renderStep(currentStep)}
-            <Button onClick={handleNextStep}>Next Step</Button>
         </div>
     )
 }
