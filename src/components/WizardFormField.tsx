@@ -18,13 +18,17 @@ const WizardFormField = ({ label, hint, placeholder, validate, onError }: TextFi
 
     useEffect(() => {
         localStorage.setItem(label, value)
-        setError(!validate(value))
-        onError(!validate(value))
-    }, [label, onError, validate, value,])
+    }, [label, value])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value
         setValue(newValue)
+        if(newValue.length < 0){
+            setError(undefined)
+        } else {
+            setError(!validate(newValue))
+            onError(!validate(newValue))
+        }
     }
 
     return (

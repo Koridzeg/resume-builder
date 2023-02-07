@@ -26,7 +26,9 @@ const Resume = () => {
                 </Box>
             </Box>
             <Typography color='#F93B1D' fontWeight='700' fontSize='30px'>ჩემ შესახებ</Typography>
+            <Box display='flex' flexDirection='column' width='40%'>
             <Typography>{localStorage.getItem('aboutUs')}</Typography>
+            </Box>
         </Box>
     )
 }
