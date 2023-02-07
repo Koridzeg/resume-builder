@@ -14,6 +14,8 @@ const WizardFormField = ({ label, hint, placeholder, validate, onError }: TextFi
     const [value, setValue] = useState(localStorage.getItem(label) || '')
     const [error, setError] = useState<undefined | boolean>(undefined)
 
+    
+
     useEffect(() => {
         localStorage.setItem(label, value)
         setError(!validate(value))
