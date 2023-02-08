@@ -2,16 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import  FirstStep  from './FirstStep'
 import SecondStep from './SecondStep'
+import ThirdStep from './ThirdStep'
 
 
 
 
 
-export const ThirdStep: React.FC = () => {
-    return (
-        <h1>Third Step</h1>
-    )
-}
 
 
 const WizardForm: React.FC = () => {
@@ -25,7 +21,7 @@ const WizardForm: React.FC = () => {
             case 2:
                 return <SecondStep handleNextStep={handleNextStep} handleBackStep={handleBackStep} />
             case 3:
-                return <ThirdStep />
+                return <ThirdStep handleBackStep={handleBackStep} handleNextStep={handleNextStep} />
             default:
                 return null
         }

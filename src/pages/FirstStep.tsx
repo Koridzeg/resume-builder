@@ -96,10 +96,10 @@ import Resume from '../components/Resume'
                         <TextField value={aboutUs} onChange={handleAboutUsChange} multiline placeholder="ზოგადი ინფო შენ შესახებ" rows={4} sx={{ bgcolor: 'white', width: "87%" }} />
                     </Box>
                 </Box>
-                <Box display='flex' width='91%' paddingTop='1em' paddingLeft='7.5em'>
+                <Box display='flex' width='89%' paddingTop='1em' paddingLeft='7.5em'>
                     <WizardFormField onError={(error) => setEmailError(error)} placeholder='anzorr666@redberry.ge' label='ელ.ფოსტა' hint='უნდა მთავრდებოდეს @redberry.ge-ით' validate={handleEmailValidation} />
                 </Box>
-                <Box display='flex' width='91%' paddingTop='1em' paddingLeft='7.5em'>
+                <Box display='flex' width='89%' paddingTop='1em' paddingLeft='7.5em'>
                     <WizardFormField onError={(error) => setNumberError(error)} placeholder='+995 551 12 34 56' label='მობილურის ნომერი' hint='უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს' validate={handlePhoneValidation} />
                 </Box>
                 <Box display='flex' justifyContent='flex-end' width='89%' paddingTop='4em'>
